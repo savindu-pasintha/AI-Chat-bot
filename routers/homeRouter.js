@@ -1,9 +1,10 @@
 import express from 'express'
-import { homeController } from '../controllers/homeController.js';
+import { getStatus, homeController } from '../controllers/homeController.js';
 
 const homeRouter = express.Router();
 
 homeRouter.get('/', homeController);
+homeRouter.get('/status',getStatus)
 
 export default  homeRouter
 

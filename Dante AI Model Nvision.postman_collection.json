@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "c796413f-79b1-4eae-9ef9-94c2b092e000",
+		"name": "Dante AI Model Nvision",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17714535"
+	},
+	"item": [
+		{
+			"name": "2-create using urls",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/kb/url?knowledge_base_name=name&max_urls=2&urls=u&exclude_urls=e&urls=u2&exclude_urls=e2",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"url"
+					],
+					"query": [
+						{
+							"key": "knowledge_base_name",
+							"value": "name"
+						},
+						{
+							"key": "max_urls",
+							"value": "2"
+						},
+						{
+							"key": "urls",
+							"value": "u"
+						},
+						{
+							"key": "exclude_urls",
+							"value": "e"
+						},
+						{
+							"key": "urls",
+							"value": "u2"
+						},
+						{
+							"key": "exclude_urls",
+							"value": "e2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6- Retrive the list of knowledgebases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/kb",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-delete a specific knwledgebase",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/kb?knowledge_base_id={{kb_id}}",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb"
+					],
+					"query": [
+						{
+							"key": "knowledge_base_id",
+							"value": "{{kb_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8-Delete ALL files Associated with the knowledgebase",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/kb/files?knowledge_base_id=7ba2ed52-58bf-42c3-9376-1ca1c5fee137",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"files"
+					],
+					"query": [
+						{
+							"key": "knowledge_base_id",
+							"value": "7ba2ed52-58bf-42c3-9376-1ca1c5fee137"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8-Delete specific file in the knowledgebase",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/kb/file?file_id={{file_id}}",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"file"
+					],
+					"query": [
+						{
+							"key": "file_id",
+							"value": "{{file_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-add urls to specific kb",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/kb/{{kb_id}}/urls?max_urls=2&urls=https://salesplay.com&exclude_urls=https://salesplay.com&urls=https://salesplay.com&exclude_urls=e2 ",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"{{kb_id}}",
+						"urls"
+					],
+					"query": [
+						{
+							"key": "max_urls",
+							"value": "2"
+						},
+						{
+							"key": "urls",
+							"value": "https://salesplay.com"
+						},
+						{
+							"key": "exclude_urls",
+							"value": "https://salesplay.com"
+						},
+						{
+							"key": "urls",
+							"value": "https://salesplay.com"
+						},
+						{
+							"key": "exclude_urls",
+							"value": "e2 "
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "b",
+			"value": "http://localhost:5000/api",
+			"type": "string"
+		},
+		{
+			"key": "kb_id",
+			"value": "2d2f794d-17b1-4c66-8480-64b5282b0f1d",
+			"type": "string"
+		},
+		{
+			"key": "file_id",
+			"value": "6e1d26b1-62bd-4f73-8789-d52e7e120be4",
+			"type": "string"
+		}
+	]
+}

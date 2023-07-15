@@ -4,14 +4,7 @@ dotenv.config();
 
 const url = process.env.DANTE_ATHINA_BASE_URL;
 
-export const homeController = (req, res, next) => {
-  res.status(200).json({
-    server: `server is running on http://localhost:${process.env.PORT}`,
-  });
-};
-
-
-export const getStatus = (req, res, next) => {
+export const createKnowledgeBaseUsingUrlsAnsSave = (req, res, next) => {
   try {
     let config = {
       method: "get",

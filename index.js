@@ -8,8 +8,11 @@ import dotenv from 'dotenv';
 import axiosInstance from'./middleware/axiosInstance.js';
 
 import homeRouter from './routers/homeRouter.js';
-import todoRouter from './routers/todoRouter.js';
-import userRouter from './routers/userRouter.js';
+import knowledgeBasesRouter from './routers/knowledgeBasesRouter.js';
+import profileRouter from './routers/profileRouter.js';
+
+// import todoRouter from './routers/todoRouter.js';
+// import userRouter from './routers/userRouter.js';
 
 dotenv.config();
 
@@ -22,34 +25,13 @@ app.use(cors({ origin: process.env.CLIENT_ORIGIN }));
 app.use(logger("dev"));
 app.use(cookieParser());
 
-// app.use("/",homeRouter)
+app.use("/",homeRouter)
 app.use("/api",homeRouter)
-app.use("/api",todoRouter)
-app.use("/api/user",userRouter)
+app.use("/api/kb",knowledgeBasesRouter)
+app.use("/api/p",profileRouter)
+// app.use("/api",todoRouter)
+// app.use("/api/user",userRouter)
 
-app.get('/', async (req, res) => {
-  try {
-    let config = {
-      method: 'get',
-      maxBodyLength: Infinity,
-      url: 'https://api.athena-ai.co/profile',
-      headers: { 
-        'Authorization': ''
-      }
-    };
-    
-    axiosInstance.request(config)
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((error) => {
-      throw error
-    });
-
-  }catch(err){
-    res.send(err)
-  }
-});
 
 // try{
 //   mongoose.set('strictQuery', false);

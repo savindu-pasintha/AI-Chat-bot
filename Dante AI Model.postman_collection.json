@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "022530a2-d244-458e-8d5d-06de970536e1",
+		"name": "Dante AI Model",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17714535"
+	},
+	"item": [
+		{
+			"name": "0-check is it working/status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}",
+					"host": [
+						"{{b}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "options docs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/openapi.json",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"openapi.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-Create indexes for files connected with a knowledge base.",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{b}}/model/create_index?kb_id={{kb_id}}&frag_size=400",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"model",
+						"create_index"
+					],
+					"query": [
+						{
+							"key": "kb_id",
+							"value": "{{kb_id}}"
+						},
+						{
+							"key": "frag_size",
+							"value": "400"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Create a knowledge base from URLs and save it in the database",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/knowledge-bases/url?urls=https://www.salesplay.com/&max_urls=1&knowledge_base_name=knowledge_base_name1",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"url"
+					],
+					"query": [
+						{
+							"key": "urls",
+							"value": "https://www.salesplay.com/"
+						},
+						{
+							"key": "max_urls",
+							"value": "1"
+						},
+						{
+							"key": "knowledge_base_name",
+							"value": "knowledge_base_name1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1-Authenticated route",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/authenticated-route",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"authenticated-route"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Retrieve the details of a specific knowledge base.",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/knowledge-bases/{{kb_id}}",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"{{kb_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-Delete a specific knowledge base",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/knowledge-bases/{{kb_id}}",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"{{kb_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6-Retrieve a list of knowledge bases belonging to the authenticated user.",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{b}}/knowledge-bases",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7-Add a file to a specific knowledge base.",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/savindu pasintha/Downloads/updated strings.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{b}}/knowledge-bases/{{kb_id}}/files",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"{{kb_id}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8-Delete all files associated with a specific knowledge base.",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/knowledge-bases/{{kb_id}}/files",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"{{kb_id}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9-Get chat message suggestions based on the provided messages.",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"role\": \"user\",\r\n    \"content\": \"string\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{b}}/suggestion/?kb_id={{kb_id}}&mode=normal_mode",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"suggestion",
+						""
+					],
+					"query": [
+						{
+							"key": "kb_id",
+							"value": "{{kb_id}}"
+						},
+						{
+							"key": "mode",
+							"value": "normal_mode"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10-profile view",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/profile",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8- delete specific file in the kb",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/knowledge-bases/files/{{file_id}}",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"files",
+						"{{file_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "b",
+			"value": "https://api.athena-ai.co",
+			"type": "string"
+		},
+		{
+			"key": "t",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJmYXN0YXBpLXVzZXJzOmF1dGgiLCJleHAiOjE2ODk1MDgxMTYsInN1YiI6IjQ3NDM0MTZmLWFmMTctNDcyNC04ODk1LTQ1NTQ2Mjg5MjlmZSJ9.zE1uE-61dALCifzIGSJT8XNlnpdrGM1TF-VBLgcK_3w",
+			"type": "string"
+		},
+		{
+			"key": "kb_id",
+			"value": "2d2f794d-17b1-4c66-8480-64b5282b0f1d",
+			"type": "string"
+		},
+		{
+			"key": "file_id",
+			"value": "6e1d26b1-62bd-4f73-8789-d52e7e120be4",
+			"type": "string"
+		}
+	]
+}
