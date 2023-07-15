@@ -1,16 +1,79 @@
 import dotenv from "dotenv";
+import FormData from 'form-data';
 import axios from "../middleware/axiosInstance.js";
 dotenv.config();
 
 const url = process.env.DANTE_ATHINA_BASE_URL;
 
-export const createKnowledgeBaseUsingUrlsAndSave = async (req, res, next) => {
+export const createKnowledgeBaseUsingUrlsFilesAndSave = async (req, res, next) => {
   try {
-   let config = {
+    const formData = new FormData();
+    for (const file of Object.values(req.files)) {
+        formData.append(file.fieldname, file.buffer, {
+        filename: file.originalname,
+        contentType: file.mimetype,
+      });
+    }
+    let config = {
       method: "post",
       maxBodyLength: Infinity,
       url: `${url}/knowledge-bases${req.url}`,
-       headers: {
+      headers: {
+        Accept: "application/json",
+      },
+      data: formData
+    };
+    await axios
+      .request(config)
+      .then((response) => {
+        res.json(response.data);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  } catch (error) {
+    res.send({ msg: error["response"]["data"], error: error });
+  }
+};
+
+export const createKnowledgeBaseV2UsingUrlsFilesAndSave = async (req, res, next) => {
+  try {
+    const formData = new FormData();
+    for (const file of Object.values(req.files)) {
+        formData.append(file.fieldname, file.buffer, {
+        filename: file.originalname,
+        contentType: file.mimetype,
+      });
+    }
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${url}/knowledge-bases/v2${req.url}`,
+      headers: {
+        Accept: "application/json",
+      },
+      data: formData
+    };
+    await axios
+      .request(config)
+      .then((response) => {
+        res.json(response.data);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  } catch (error) {
+    res.send({ msg: error["response"]["data"], error: error });
+  }
+};
+
+export const createKnowledgeBaseUsingUrlsAndSave = async (req, res, next) => {
+  try {
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${url}/knowledge-bases${req.url}`,
+      headers: {
         Accept: "application/json",
       },
     };
@@ -27,14 +90,35 @@ export const createKnowledgeBaseUsingUrlsAndSave = async (req, res, next) => {
   }
 };
 
-export const createKnowledgeBaseUsingFilesAndSave = (req, res, next) => {
+export const createKnowledgeBaseV2UsingUrlsAndSave = async (req, res, next) => {
   try {
-    const { knowledge_base_name } = req.query;
-    const files = req.files;
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${url}/knowledge-bases/v2${req.url}`,
+      headers: {
+        Accept: "application/json",
+      },
+    };
+    await axios
+      .request(config)
+      .then((response) => {
+        res.json(response.data);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  } catch (error) {
+    res.send({ msg: error["response"]["data"], error: error });
+  }
+};
+
+export const createKnowledgeBaseUsingFilesAndSave = async (req, res, next) => {
+  try {
+    console.log(req.url)
     const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      formData.append("files", file.buffer, {
+    for (const file of Object.values(req.files)) {
+        formData.append(file.fieldname, file.buffer, {
         filename: file.originalname,
         contentType: file.mimetype,
       });
@@ -43,13 +127,14 @@ export const createKnowledgeBaseUsingFilesAndSave = (req, res, next) => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${url}/knowledge-bases/files?knowledge_base_name=${knowledge_base_name}`,
+      url: `${url}/knowledge-bases${req.url}`,
       headers: {
         Accept: "application/json",
       },
+      data:formData
     };
 
-    axios
+    await axios
       .request(config)
       .then((response) => {
         res.send(response.data);
@@ -62,7 +147,7 @@ export const createKnowledgeBaseUsingFilesAndSave = (req, res, next) => {
   }
 };
 
-export const addUrlsToUSpecificKnowledgeBase = async (req, res, next) => {
+export const addUrlsToSpecificKnowledgeBase = async (req, res, next) => {
   try {
     let config = {
       method: "post",
@@ -84,7 +169,60 @@ export const addUrlsToUSpecificKnowledgeBase = async (req, res, next) => {
     res.send({ msg: error["response"]["data"], error: error });
   }
 };
+export const addUrlsToSpecificKnowledgeBaseV2 = async (req, res, next) => {
+  try {
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${url}/knowledge-bases/v2${req.url}`,
+      headers: {
+        Accept: "application/json",
+      },
+    };
+    await axios
+      .request(config)
+      .then((response) => {
+        res.send(response.data);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  } catch (error) {
+    res.send({ msg: error["response"]["data"], error: error });
+  }
+};
 
+export const addFilesToSpecificKnowledgeBase = async (req, res) => {
+  try {
+    const formData = new FormData();
+    for (const file of Object.values(req.files)) {
+        formData.append(file.fieldname, file.buffer, {
+        filename: file.originalname,
+        contentType: file.mimetype,
+      });
+    }
+
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${url}/knowledge-bases${req.url}`,
+      headers: {
+        Accept: "application/json",
+      },
+      data: formData,
+    };
+    await axios
+      .request(config)
+      .then((response) => {
+        res.send(response.data);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  } catch (error) {
+    res.send({ msg: error["response"]["data"], error: error });
+  }
+};
 export const retriveKnowledgeBasesBellongWithAuthenticatedUser = async (
   req,
   res,
@@ -115,7 +253,7 @@ export const retriveKnowledgeBasesBellongWithAuthenticatedUser = async (
 
 export const deleteSpecificKnowledgeBase = async (req, res, next) => {
   try {
-    const { knowledge_base_id } = req.query; 
+    const { knowledge_base_id } = req.query;
     let config = {
       method: "delete",
       maxBodyLength: Infinity,

@@ -418,6 +418,90 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "2- add files to specific kb",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/savindu pasintha/Documents/thermal printer read me.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{b}}/knowledge-bases/{{kb_id}}/files",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"knowledge-bases",
+						"{{kb_id}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create model query",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{t}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.dante-ai.com/model/query-stream?question=What+are+the+key+features+of+SalesPlay%3F&model_type=gpt-3.5-turbo&conversation_id=dcde88eb-e94d-4716-a20b-418bebbd338f",
+					"protocol": "https",
+					"host": [
+						"api",
+						"dante-ai",
+						"com"
+					],
+					"path": [
+						"model",
+						"query-stream"
+					],
+					"query": [
+						{
+							"key": "question",
+							"value": "What+are+the+key+features+of+SalesPlay%3F"
+						},
+						{
+							"key": "model_type",
+							"value": "gpt-3.5-turbo"
+						},
+						{
+							"key": "conversation_id",
+							"value": "dcde88eb-e94d-4716-a20b-418bebbd338f"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [

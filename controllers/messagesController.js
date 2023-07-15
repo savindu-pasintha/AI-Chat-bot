@@ -4,16 +4,17 @@ dotenv.config();
 
 const url = process.env.DANTE_ATHINA_BASE_URL;
 
-export const createKnowledgeBaseUsingUrlsAnsSave = (req, res, next) => {
+export const getSuggestions = async (req, res, next) => {
+ 
   try {
     let config = {
-      method: "get",
+      method: "post",
       maxBodyLength: Infinity,
-      url: `${url}`,
+      url: `${url}${req.url}`,
       headers: {},
+      data: req.body
     };
-
-    axios
+   await axios
       .request(config)
       .then((response) => {
         res.send(response.data);
@@ -22,6 +23,6 @@ export const createKnowledgeBaseUsingUrlsAnsSave = (req, res, next) => {
         throw error;
       });
   } catch (error) {
-    res.send(error);
+    res.send({ msg: error["response"]["data"], error: error });
   }
 };

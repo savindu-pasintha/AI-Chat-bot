@@ -10,9 +10,12 @@ import axiosInstance from'./middleware/axiosInstance.js';
 import homeRouter from './routers/homeRouter.js';
 import knowledgeBasesRouter from './routers/knowledgeBasesRouter.js';
 import profileRouter from './routers/profileRouter.js';
-
+import messagesRouter from './routers/messagesRouter.js';
+import conversationsRouter from './routers/conversationsRouter.js';
+import modelsAndPredictionsRouter from './routers/modelsAndPredictionsRouter.js';
+import userRouter from './routers/userRouter.js';
 // import todoRouter from './routers/todoRouter.js';
-// import userRouter from './routers/userRouter.js';
+
 
 dotenv.config();
 
@@ -28,9 +31,13 @@ app.use(cookieParser());
 app.use("/",homeRouter)
 app.use("/api",homeRouter)
 app.use("/api/kb",knowledgeBasesRouter)
-app.use("/api/p",profileRouter)
+app.use("/api/profile",profileRouter)
+app.use("/api/m",messagesRouter)
+app.use("/api/conversations",conversationsRouter)
+app.use("/api/model",modelsAndPredictionsRouter)
+app.use("/api/users",userRouter)
 // app.use("/api",todoRouter)
-// app.use("/api/user",userRouter)
+
 
 
 // try{

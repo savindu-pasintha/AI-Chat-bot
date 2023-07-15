@@ -178,6 +178,320 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "2-add files to specific kb",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/savindu pasintha/Documents/thermal printer read me.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{b}}/kb/{{kb_id}}/files",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"{{kb_id}}",
+						"files"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1-create kb using files",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/savindu pasintha/Documents/thermal printer read me.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{b}}/kb/files?knowledge_base_name=name",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"files"
+					],
+					"query": [
+						{
+							"key": "knowledge_base_name",
+							"value": "name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1-crete kb using files and urls",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/savindu pasintha/Documents/thermal printer read me.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{b}}/kb/all?urls=1&urls=2&max_urls=20&exclude_urls=1&exclude_urls=2&knowledge_base_name=name",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"kb",
+						"all"
+					],
+					"query": [
+						{
+							"key": "urls",
+							"value": "1"
+						},
+						{
+							"key": "urls",
+							"value": "2"
+						},
+						{
+							"key": "max_urls",
+							"value": "20"
+						},
+						{
+							"key": "exclude_urls",
+							"value": "1"
+						},
+						{
+							"key": "exclude_urls",
+							"value": "2"
+						},
+						{
+							"key": "knowledge_base_name",
+							"value": "name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get suggestions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"role\": \"user\",\r\n    \"content\": \"what is your name\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{b}}/m/suggestions/?kb_id={{kb_id}}&mode=normal_mode",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"m",
+						"suggestions",
+						""
+					],
+					"query": [
+						{
+							"key": "kb_id",
+							"value": "{{kb_id}}"
+						},
+						{
+							"key": "mode",
+							"value": "normal_mode"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9-create conversation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/conversations?kb_id=f65976b9-acea-472f-b63a-6d49aa0300a7&name=name",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"conversations"
+					],
+					"query": [
+						{
+							"key": "kb_id",
+							"value": "f65976b9-acea-472f-b63a-6d49aa0300a7"
+						},
+						{
+							"key": "name",
+							"value": "name"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9-list of conversations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/conversations",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"conversations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9- delete all conversations",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/conversations/all",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"conversations",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 - create model index",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "profile data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/profile",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10-create model query",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/model/query?model_type=gpt-4&question=hi&conversation_id=dcde88eb-e94d-4716-a20b-418bebbd338f&user_generated_id=4743416f-af17-4724-8895-4554628929fe",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"model",
+						"query"
+					],
+					"query": [
+						{
+							"key": "model_type",
+							"value": "gpt-4"
+						},
+						{
+							"key": "question",
+							"value": "hi"
+						},
+						{
+							"key": "conversation_id",
+							"value": "dcde88eb-e94d-4716-a20b-418bebbd338f"
+						},
+						{
+							"key": "user_generated_id",
+							"value": "4743416f-af17-4724-8895-4554628929fe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10- create model query stream",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{b}}/model/query-stream?model_type=gpt-4&question=hi&conversation_id=dcde88eb-e94d-4716-a20b-418bebbd338f&user_generated_id=c5917267-8b49-490f-9edf-4154e89318ec",
+					"host": [
+						"{{b}}"
+					],
+					"path": [
+						"model",
+						"query-stream"
+					],
+					"query": [
+						{
+							"key": "model_type",
+							"value": "gpt-4"
+						},
+						{
+							"key": "question",
+							"value": "hi"
+						},
+						{
+							"key": "conversation_id",
+							"value": "dcde88eb-e94d-4716-a20b-418bebbd338f"
+						},
+						{
+							"key": "user_generated_id",
+							"value": "c5917267-8b49-490f-9edf-4154e89318ec"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
