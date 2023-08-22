@@ -6,6 +6,7 @@ const homeRouter = express.Router();
 homeRouter.get('/', homeController);
 homeRouter.get('/status',getStatus)
 
+
 export default  homeRouter
 
 

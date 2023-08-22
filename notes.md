@@ -11,7 +11,7 @@ I want to add a "AI" module at the operations level, so the Operator has the the
 
 https://docs.d-id.com/reference/get-started
 
-API key: bWFnbnVzQHdpYmlwLmNvbQ:hQapWEq3_V__VxM8n8Gai
+API key: c2F2aW5kdXBhc2luZ3RoYUBnbWFpbC5jb20:N1USPvySuPOyD_FGZz3mM
 //magnus@wibip.com
 //XJ_W<
 
