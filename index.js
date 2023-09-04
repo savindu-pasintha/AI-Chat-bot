@@ -73,8 +73,8 @@ const config = {
     //Provide details for local configuration
   },
   aws_remote_config: {
-    accessKeyId: 'AKIA2OPTEDEYD3XO6Q7W',
-    secretAccessKey: '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',
+    accessKeyId: '##AKIA2OPTEDEYD3XO6Q7W',
+    secretAccessKey: '##CHDjqNYOPPzk4GT+Pr21oBS2KwoJKF1qaE7M4UmE',
     region: 'us-east-1',
   }
 };
