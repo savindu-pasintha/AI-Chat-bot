@@ -41,8 +41,10 @@ app.set("view engine", "ejs");
 //socket server config
 const server = new http.createServer(app);
 const io = new Server(server,{ cors: {
-    origin: true,
-    credentials: true,
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ["my-custom-header"],
+  credentials: true,
   },
   allowEIO3: true,});
 
