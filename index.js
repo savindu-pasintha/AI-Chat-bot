@@ -40,7 +40,10 @@ app.set("view engine", "ejs");
 
 //socket server config
 const server = new http.createServer(app);
-const io = new Server(server,{ cors: {
+const io = new Server(server,{
+  
+  transports: ['websocket'],
+  cors: {
   origin: '*',
   methods: ['GET', 'POST'],
   allowedHeaders: ["my-custom-header"],
