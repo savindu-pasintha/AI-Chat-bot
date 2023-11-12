@@ -41,7 +41,7 @@ app.set("view engine", "ejs");
 //socket server config
 const server = new http.createServer(app);
 const io = new Server(server,{
-  transports: ['websocket'],
+  transports: ['websocket','polling'],
   cors: {
   origin: ['http://localhost', 'https://localhost'],
   methods: ['GET', 'POST'],
