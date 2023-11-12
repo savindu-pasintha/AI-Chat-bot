@@ -41,10 +41,9 @@ app.set("view engine", "ejs");
 //socket server config
 const server = new http.createServer(app);
 const io = new Server(server,{
-  
   transports: ['websocket'],
   cors: {
-  origin: '*',
+  origin: 'https://ai-chat-glp47iga7-savindu-pasintha.vercel.app',
   methods: ['GET', 'POST'],
   allowedHeaders: ["my-custom-header"],
   credentials: true,
