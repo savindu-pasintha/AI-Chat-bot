@@ -43,7 +43,7 @@ const server = new http.createServer(app);
 const io = new Server(server,{
   transports: ['websocket'],
   cors: {
-  origin: '*',
+  origin: ['http://localhost', 'https://localhost'],
   methods: ['GET', 'POST'],
   allowedHeaders: ["my-custom-header"],
   credentials: true,
