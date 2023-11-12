@@ -6,10 +6,10 @@ dotenv.config();
 const url = process.env.DANTE_ATHINA_BASE_URL;
 
 export const homeController = (req, res, next) => {
-  res.render('index')
-  // res.status(200).json({
-  //   server: `server is running on http://localhost:${process.env.PORT}`,
-  // });
+ // res.render('index')
+   res.status(200).json({
+     server: `server is running on port ${process.env.PORT}`,
+ });
 };
 
 
