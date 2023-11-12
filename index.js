@@ -88,31 +88,31 @@ const config = {
     region: 'us-east-1',
   }
 };
-try{
-  const client = new DynamoDBClient(config.aws_remote_config);
-  console.log("aws dynamodb connected")
 
-  const params = {
-    TableName: "table1",
-    Key: {
-      primary_key : 0
-    },
-  };
-  // const getItemCommand = new GetItemCommand(params);
-  // const data = await client.send(getItemCommand);
-  // console.log("red Item:", data.Item);
-
-  const scanCommand = new ScanCommand(params);
-  const data = await client.send(scanCommand);
-  console.log("Items:", data.Items);
-  console.log("create table",response)
- 
-}catch(err){
-  console.log("error ",err)
-}finally{
-  console.log("final block .")
-}
-
+//try{
+  //   const client = new DynamoDBClient(config.aws_remote_config);
+  //   console.log("aws dynamodb connected")
+  
+  //   const params = {
+  //     TableName: "table1",
+  //     Key: {
+  //       primary_key : 0
+  //     },
+  //   };
+  //   // const getItemCommand = new GetItemCommand(params);
+  //   // const data = await client.send(getItemCommand);
+  //   // console.log("red Item:", data.Item);
+  
+  //   const scanCommand = new ScanCommand(params);
+  //   const data = await client.send(scanCommand);
+  //   console.log("Items:", data.Items);
+  //   console.log("create table",response)
+   
+  // }catch(err){
+  //   console.log("error ",err)
+  // }finally{
+  //   console.log("final block .")
+  // }
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on http://localhost:${process.env.PORT}`);
 // });
