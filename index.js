@@ -1,5 +1,5 @@
 import express from 'express';
-import mongoose from 'mongoose'
+//import mongoose from 'mongoose'
 import logger from 'morgan'
 import cors from 'cors'
 import bodyParser from 'body-parser'
@@ -8,6 +8,8 @@ import dotenv from 'dotenv';
 import path from 'path'
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import http from 'http'
+import {Server} from 'socket.io'
 import { DynamoDBClient, BatchExecuteStatementCommand,CreateTableCommand ,GetItemCommand,ScanCommand } from "@aws-sdk/client-dynamodb";
 
 import homeRouter from './routers/homeRouter.js';
@@ -16,7 +18,7 @@ import profileRouter from './routers/profileRouter.js';
 import messagesRouter from './routers/messagesRouter.js';
 import conversationsRouter from './routers/conversationsRouter.js';
 import modelsAndPredictionsRouter from './routers/modelsAndPredictionsRouter.js';
-import userRouter from './routers/userRouter.js';
+//import userRouter from './routers/userRouter.js';
 // import todoRouter from './routers/todoRouter.js';
 
 dotenv.config();
@@ -36,6 +38,14 @@ app.use(cookieParser());
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
+//socket server config
+const server = new http.createServer(app);
+const io = new Server(server,{ cors: {
+    origin: true,
+    credentials: true,
+  },
+  allowEIO3: true,});
+
 app.use("/",homeRouter)
 app.use("/api",homeRouter)
 app.use("/api/kb",knowledgeBasesRouter)
@@ -43,7 +53,7 @@ app.use("/api/profile",profileRouter)
 app.use("/api/m",messagesRouter)
 app.use("/api/conversations",conversationsRouter)
 app.use("/api/model",modelsAndPredictionsRouter)
-app.use("/api/users",userRouter)
+//app.use("/api/users",userRouter)
 // app.use("/api",todoRouter)
 
 // try{
@@ -103,8 +113,30 @@ try{
   console.log("final block .")
 }
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on http://localhost:${process.env.PORT}`);
+// app.listen(process.env.PORT, () => {
+//   console.log(`Server running on http://localhost:${process.env.PORT}`);
+// });
+
+const port = process.env.PORT
+const onConnections = (socket) =>{
+  socket.on("create-something",(o)=>{
+    socket.emit("typing",'send from socket server',o)
+  })
+  socket.on('payBtn',(data)=>{
+    var count = 0;
+    setInterval(()=>{
+      socket.emit('notify','user',count++)
+    },3000)
+    })
+}
+io.on('connection',onConnections);
+
+io.on('disconnect', (socket) => {
+  console.log('a user dis-connected');
+}); 
+
+server.listen(port, () => {
+  console.log(`listening on *: ${port}`);
 });
 
 
