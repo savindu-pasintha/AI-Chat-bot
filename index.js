@@ -43,7 +43,7 @@ const server = new http.createServer(app);
 const io = new Server(server,{
   transports: ['websocket','polling'],
   cors: {
-  origin: ['http://localhost', 'http://localhost:3600', 'https://localhost'],
+  origin: ['*','http://localhost', 'http://localhost:3600', 'https://localhost'],
   methods: ['GET', 'POST'],
   //allowedHeaders: ["my-custom-header"],
   //credentials: true,
