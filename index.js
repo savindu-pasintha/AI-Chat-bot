@@ -43,7 +43,7 @@ const server = new http.createServer(app);
 const io = new Server(server,{
   transports: ['websocket'],
   cors: {
-  origin: 'https://ai-chat-glp47iga7-savindu-pasintha.vercel.app',
+  origin: 'https://ai-chat-bwl0zocqx-savindu-pasintha.vercel.app',
   methods: ['GET', 'POST'],
   allowedHeaders: ["my-custom-header"],
   credentials: true,
