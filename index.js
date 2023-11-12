@@ -45,8 +45,8 @@ const io = new Server(server,{
   cors: {
   origin: ['http://localhost', 'http://localhost:3600', 'https://localhost'],
   methods: ['GET', 'POST'],
-  allowedHeaders: ["my-custom-header"],
-  credentials: true,
+  //allowedHeaders: ["my-custom-header"],
+  //credentials: true,
   },
   allowEIO3: true,});
 
