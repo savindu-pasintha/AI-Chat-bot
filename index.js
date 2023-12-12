@@ -1,3 +1,5 @@
+import cluster from 'cluster'
+import os from 'os';
 import express from 'express';
 //import mongoose from 'mongoose'
 import logger from 'morgan'
@@ -26,6 +28,25 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const totalCPUs = os.availableParallelism();
+ 
+if (cluster.isPrimary) {
+  console.log(`Number of CPUs is ${totalCPUs}`);
+  console.log(`Primary ${process.pid} is running`);
+ 
+  // Fork workers.
+  for (let i = 0; i < totalCPUs; i++) {
+    cluster.fork();
+  }
+ 
+  cluster.on("exit", (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+    console.log("Let's fork another worker!");
+    cluster.fork();
+  });
+} else {
+  const port = process.env.PORT
+  console.log(`Worker ${process.pid} started`);
 var app = express();
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
@@ -121,7 +142,7 @@ const config = {
 //   console.log(`Server running on http://localhost:${process.env.PORT}`);
 // });
 
-const port = process.env.PORT
+
 const onConnections = (socket) =>{
   socket.on("create-something",(o)=>{
     socket.emit("typing",'send from socket server',o)
@@ -142,5 +163,8 @@ io.on('disconnect', (socket) => {
 server.listen(port, () => {
   console.log(`listening on *: ${port}`);
 });
+
+}
+
 
 
